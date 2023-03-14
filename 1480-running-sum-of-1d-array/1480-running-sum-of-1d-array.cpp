@@ -4,8 +4,8 @@ public:
         vector<int> result={nums[0]};
         for(int i=1;i<nums.size();i++)
         {
-            result.push_back(result.back()+nums[i]);
+            nums[i] += nums[i-1];
         }
-        return result;
+        return nums;
     }
 };
