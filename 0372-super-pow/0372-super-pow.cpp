@@ -1,23 +1,14 @@
 class Solution {
 public:
-    int binaryExp(int a, int b){
-        a = a%1337;
-        int ans =1;
-        while(b>0){
-            if(b&1){
-                ans =( ans*1LL*a)%1337;
-            }
-            a = (a*1LL*a)%1337;
-            b >>=1;
-        }
-        return ans;
+    int pow(int a, int b){
+        if(b==0) return 1;
+        int temp=pow(a,b/2);
+        if(b%2==0) return ((temp%1337)*temp%1337)%1337;
+        else return (a%1337*((temp%1337*temp%1337)%1337))%1337;
     }
     int superPow(int a, vector<int>& b) {
-        int bmod = 0;
-        for(int val:b){
-            bmod = (bmod*10+val)%1140;
-        }
-        return binaryExp(a, bmod);
-        
+        if(b.size()==0) return 1;
+        int x=b.back(); b.pop_back();
+        return pow(superPow(a, b), 10) * pow(a, x) % 1337;
     }
 };
