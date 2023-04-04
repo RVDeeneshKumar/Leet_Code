@@ -1,10 +1,24 @@
+/* Java Solution */
 class Solution {
-    public boolean checkStraightLine(int[][] coordinates) {
-        for(int i=2;i<coordinates.length;i++){
-            if((coordinates[1][1]-coordinates[0][1])*(coordinates[i][0]-coordinates[0][0])!=(coordinates[1][0]-coordinates[0][0])*(coordinates[i][1]-coordinates[0][1])){
-    return false;
-    }
-    }
-    return true;
+    public boolean checkStraightLine(int[][] c) {
+        // First pair of point (x0, y0)
+        int x0 = c[0][0];
+        int y0 = c[0][1];
+
+        // Second pair of point (x1, y1)
+        int x1 = c[1][0];
+        int y1 = c[1][1];
+
+        int dx = x1 - x0, dy = y1 - y0;
+        
+        
+         // Loop to iterate over the points
+        for (int i = 0; i < c.length; i++) {
+            int x = c[i][0], y = c[i][1];
+            if (dx * (y - y1) != dy * (x - x1)){
+                return false;
+            }
+        }
+        return true;
     }
 }
